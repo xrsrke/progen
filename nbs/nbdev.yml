@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "progen"
+  site-url: "https://xrsrke.github.io/progen"
+  description: "Design new bacteria-killing proteins using language model"
+  repo-branch: main
+  repo-url: "https://github.com/xrsrke/progen"
