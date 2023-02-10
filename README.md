@@ -9,3 +9,11 @@ families](https://www.nature.com/articles/s41587-022-01618-2)
 
 I am currently working towards this paper. Check out my learning
 progress here: https://twitter.com/xariusrke/status/1621403313651728386
+
+- Train a tokenizer speciailize for DNA sequence from scratch
+
+### TODO
+
+### Questions
+
+Things that I encounter along the way and how i solve it
