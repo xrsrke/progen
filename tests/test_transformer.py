@@ -32,8 +32,12 @@ def test_block():
 def test_transformer_model():
     x = torch.randint(0, 100, (10, 32))
 
-    transformer = TransformerModel(vocab_size=100, n_layers=6, n_heads=8, d_model=512, d_ff=2048, max_seq_len=32)
+    model = TransformerModel(vocab_size=100, n_layers=6, n_heads=8, d_model=512, d_ff=2048, max_seq_len=32)
 
-    y = transformer(x)
+    y = model(x)
 
     assert y.shape == (10, 32, 512)
+
+
+def test_generate_proteins():
+    pass
