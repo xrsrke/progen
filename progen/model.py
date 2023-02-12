@@ -52,16 +52,21 @@ class MultiHeadAttention(nn.Module):
         mask: Optional[TensorType["batch_size", "seq_len", "d_model"]]=None
     ) -> TensorType["batch_size", "seq_len", "d_model"]:
         bs = q.size(0)
+                
         k = self.k_linear(k).view(bs, -1, self.n_heads, self.d_head)
         q = self.q_linear(q).view(bs, -1, self.n_heads, self.d_head)
         v = self.v_linear(v).view(bs, -1, self.n_heads, self.d_head)
+        
         k = k.transpose(1, 2)
         q = q.transpose(1, 2)
         v = v.transpose(1, 2)
+        
         scores = torch.matmul(q, k.transpose(-2, -1)) / math.sqrt(self.d_head)
+        
         if mask is not None:
             mask = mask.unsqueeze(1)
             scores = scores.masked_fill(mask == 0, -1e9)
+        
         scores = F.softmax(scores, dim=-1)
         scores = self.dropout(scores)
         output = torch.matmul(scores, v)
