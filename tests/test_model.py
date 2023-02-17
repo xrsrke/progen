@@ -26,14 +26,13 @@ def test_block():
 
     assert y.shape == (10, 32, 512)
 
-def test_progen_model():
-    x = torch.randint(0, 100, (10, 32))
-    model = ProgenModel(vocab_size=100, n_layers=6, n_heads=8, d_model=512, d_ff=2048, max_seq_len=32)
+def test_small_progen_model():
+    x = torch.randint(low=0, high=100, size=(10, 32))
+    model = ProgenModel(vocab_size=100, n_layers=36, n_heads=8, d_model=512, d_ff=2048, max_seq_len=32)
 
     y = model(x)
 
     assert y.shape == (10, 32, 512)
-
 
 def test_generate_proteins():
     pass

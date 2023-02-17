@@ -91,7 +91,7 @@ class Block(nn.Module):
 
     def forward(
         self,
-        x: TensorType['batch_size', 'seq_len', 'd_model']
+        x: TensorType["batch_size", "seq_len", "d_model"]
     ) -> TensorType["batch_size", "seq_len", "d_model"]:
         x2 = self.self_attn(x, x, x)
         x = x + self.dropout1(x2)
