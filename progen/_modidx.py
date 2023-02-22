@@ -22,4 +22,4 @@ d = { 'settings': { 'branch': 'main',
             'progen.tokenizer': {},
             'progen.utils': { 'progen.utils.ModelCheckpoint': ('utils.html#modelcheckpoint', 'progen/utils.py'),
                               'progen.utils.download_checkpoint': ('utils.html#download_checkpoint', 'progen/utils.py'),
-                              'progen.utils.load_fasta': ('utils.html#load_fasta', 'progen/utils.py')}}}
+                              'progen.utils.fasta2dict': ('utils.html#fasta2dict', 'progen/utils.py')}}}
