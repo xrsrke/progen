@@ -131,3 +131,6 @@ _proc
 
 .vscode
 drafts
+
+# ignore local proteins data
+*.fasta
