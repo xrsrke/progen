@@ -1,0 +1,5 @@
+tokenizer:
+  path: "./configs/tokenizer.json"
+
+dataset:
+  path: "./data/uniprot_sprot.fasta"

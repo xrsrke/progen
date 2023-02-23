@@ -1,10 +1,7 @@
 import pytest
-from tokenizers import Tokenizer
 
-@pytest.fixture
-def tokenizer_config():
-    with open("./configs/tokenizer.json", "r") as f:
-        return f.read()
+from progen.tokenizer import create_tokenizer
+
 
 @pytest.mark.parametrize(
     'protein, expected_ids',
@@ -13,8 +10,10 @@ def tokenizer_config():
         ("MADDKTKIGTPDN", [16, 5, 8, 8, 14, 23, 14, 13, 11, 23, 19, 8, 17])
     ]
 )
-def test_tokenize_a_protein_sequence(tokenizer_config, protein, expected_ids):
-    tokenizer = Tokenizer.from_str(tokenizer_config)
+def test_tokenize_a_protein_sequence(protein, expected_ids):
+    tokenizer = create_tokenizer(
+        tokenizer_config = "./configs/tokenizer.json",
+    )
 
     ids = tokenizer.encode(protein).ids
 
