@@ -12,7 +12,7 @@ from progen.tokenizer import create_tokenizer
 )
 def test_tokenize_a_protein_sequence(protein, expected_ids):
     tokenizer = create_tokenizer(
-        tokenizer_config = "./configs/tokenizer.json",
+        path = "./configs/tokenizer.json",
     )
 
     ids = tokenizer.encode(protein).ids

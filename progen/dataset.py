@@ -5,7 +5,7 @@ __all__ = ['extract_property_tag', 'ProteinSequence', 'ProteinDataset']
 
 # %% ../nbs/04_dataset.ipynb 4
 import re
-from typing import Tuple, Callable, TypedDict, List
+from typing import Tuple, Callable, TypedDict, List, Dict
 
 import torch
 from torch.utils.data import Dataset
