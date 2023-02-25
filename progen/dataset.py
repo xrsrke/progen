@@ -21,13 +21,13 @@ def extract_property_tag(name: str) -> Callable:
             return None
     return inner
 
-# %% ../nbs/04_dataset.ipynb 6
+# %% ../nbs/04_dataset.ipynb 7
 class ProteinSequence(TypedDict):
     id: str
     seq: str
     desc: str
 
-# %% ../nbs/04_dataset.ipynb 7
+# %% ../nbs/04_dataset.ipynb 8
 class ProteinDataset(Dataset):
     def __init__(self, data: List[ProteinSequence], tokenizer: Callable, tag_extractor: Callable):
         xs = []
