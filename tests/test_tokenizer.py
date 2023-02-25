@@ -10,9 +10,10 @@ from progen.tokenizer import create_tokenizer
         ("MADDKTKIGTPDN", [16, 5, 8, 8, 14, 23, 14, 13, 11, 23, 19, 8, 17])
     ]
 )
-def test_tokenize_a_protein_sequence(protein, expected_ids):
+def test_tokenize_a_protein_sequence(default_config, protein, expected_ids):
+    tokenizer_path = default_config["tokenizer"]["path"]
     tokenizer = create_tokenizer(
-        path = "./configs/tokenizer.json",
+        path = tokenizer_path
     )
 
     ids = tokenizer.encode(protein).ids

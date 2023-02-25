@@ -5,7 +5,7 @@ __all__ = ['PositionalEncoding', 'MultiHeadAttention', 'Block', 'ProgenModel']
 
 # %% ../nbs/03_model.ipynb 4
 import math
-from typing import Optional
+from typing import Optional, Tuple
 
 import torch
 from torch import nn
@@ -117,14 +117,32 @@ class ProgenModel(nn.Module):
         self.layers = nn.ModuleList([Block(d_model, n_heads, d_ff, dropout) for _ in range(n_layers)])
         self.dropout = nn.Dropout(dropout)
         self.norm = nn.LayerNorm(d_model)
+        # self.lm_head = nn.Linear(d_model, vocab_size)
         
     def forward(
         self,
-        x: TensorType["batch_size", "seq_len", "d_model"]
-    ) -> TensorType["batch_size", "seq_len", "d_model"]:
+        x: TensorType["batch_size", "seq_len", "d_model"],
+        target: TensorType["batch_size", 1] = None
+    ) -> Tuple[
+        TensorType["batch_size", "seq_len", "d_model"], # logits
+        Optional[TensorType[1]] # loss
+    ]:
         x = self.embedding(x)
         x = self.pos_embedding(x)
         x = self.dropout(x)
+        
         for layer in self.layers:
             x = layer(x)
-        return self.norm(x)
+        
+        logits = self.norm(x)
+        # logits = self.lm_head(x)
+        
+        if target is None:
+            loss = None
+        else:
+            logits = rearrange(logits, 'b s d -> (b s) d')
+            target = rearrange(target, 'b s -> (b s)')
+            
+            loss = F.cross_entropy(logits, target)
+        
+        return logits, loss

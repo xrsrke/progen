@@ -40,8 +40,8 @@ class ProteinDataset(Dataset):
         encoded_ys = tokenizer.encode_batch(ys)
         encoded_ys = [torch.tensor(e.ids) for e in encoded_ys]
         
-        self.xs = xs
-        self.ys = encoded_ys
+        self.xs: List[str] = xs
+        self.ys: List[str] = encoded_ys
 
     def __len__(self) -> int:
         return len(self.xs)

@@ -30,9 +30,9 @@ def test_small_progen_model():
     x = torch.randint(low=0, high=100, size=(10, 32))
     model = ProgenModel(vocab_size=100, n_layers=36, n_heads=8, d_model=512, d_ff=2048, max_seq_len=32)
 
-    y = model(x)
+    logits, loss = model(x)
 
-    assert y.shape == (10, 32, 512)
+    assert logits.shape == (10, 32, 512)
 
 def test_generate_proteins():
     pass
